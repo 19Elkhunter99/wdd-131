@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Pics 📷</title>
+    <title>Responsive Gallery</title>
     <link rel="stylesheet" href="coolpic.css">
 </head>
 <body>
-    <header>
-        <h1>Cool Pics 📷</h1>
-        <button class="menu">Menu</button>
-        <nav>
-            <!-- Navigation links will go here -->
-        </nav>
-    </header>
-    <main>
-        <h2>Welcome to Cool Pics!</h2>
-        <section class="gallery">
-            <figure>
-                <img src="norris-sm.jpeg" alt="picture">
-            </figure>
-            <!-- Repeat the above figure element 8 more times with different images -->
-        </section>
-    </main>
-    <footer>
-        <p>©2023 Not a real site 😀</p>
-    </footer>
+    <nav>
+        <button class="menu-button">Menu</button>
+        <ul class="nav-items hide">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section class="gallery">
+        <img src="norris-full.jpeg" alt="Image 1">
+        <img src="norris-sm.jpeg" alt="Image 2">
+        <img src="norris-sm.jpeg" alt="Image 3">
+    </section>
+    <script src="coolpics.js"></script>
 </body>
 </html>
