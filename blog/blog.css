@@ -1,58 +1,47 @@
-/* General styles */
+/* blog.css */
 body {
-    font-family: Helvetica, Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
+    background-color: #333;
+    color: white;
     text-align: center;
-    padding: 20px;
-    background-color: #EFC69B;
-    border-bottom: 1px solid #AF1B3F;
+    padding: 1rem 0;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #473144;
-}
-
-nav ul {
-    list-style-type: none;
+header nav ul {
+    list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: end;
-    justify-items: end;
-    border-top: 1px solid #AF1B3F;
-    border-bottom: 1px solid #AF1B3F;
-    margin: 10px auto;
-    max-width: 800px;
-    padding: 10px 0;
+    margin: 1rem 0;
 }
 
-nav ul li {
+header nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 1rem;
 }
 
-nav ul li a {
+header nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #473144;
-    font-size: 1.2em;
 }
 
 .skiptocontent a {
     position: absolute;
-    top: -40px;
-    left: 0;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .skiptocontent a:focus {
-    top: 0;
+    position: static;
+    width: auto;
+    height: auto;
 }
 
 main {
@@ -60,23 +49,52 @@ main {
     grid-template-columns: 3fr 1fr;
     gap: 20px;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-article {
-    background-color: #fff;
-    padding: 20px;
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.article {
+    background-color: white;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-article img {
-    max-width: 100%;
+.article img {
+    width: 100%;
     height: auto;
+    display: block;
+}
+
+.article-content {
+    padding: 1rem;
+}
+
+.article h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.article p {
+    line-height: 1.6;
 }
 
 .filters {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #f0f0f0;
+    padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
