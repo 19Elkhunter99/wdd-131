@@ -3,56 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Delicious and easy-to-follow recipes">
-    <meta name="author" content="Connor">
+    <title>Recipe Book</title>
+    <link rel="stylesheet" href="recipes.css">
+    <script src="main.js" defer></script>
+    <script src="recipes.mjs" type="module"></script>
+    <meta name="description" content="A collection of delicious recipes.">
+    <meta name="author" content="Your Name">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
     <meta property="og:title" content="Recipe Book">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Discover delicious recipes for every occasion">
-    <meta property="og:image" content="images/recipe-book.png">
-    <meta property="og:url" content="https://githubusername.github.io/wdd131/recipes">
+    <meta property="og:image" content="recipe-book">
+    <meta property="og:url" content="https://your-github-username.github.io/recipes/">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="recipes.css">
-    <title>Recipe Book</title>
 </head>
 <body>
     <header>
-        <img src="hamburger.jpg" alt="Recipe Book Logo">
+        <a href="#" aria-label="Home">
+            <img src="recipe book.jpg" alt="Recipe Book Logo" class="logo">
+        </a>
         <h1>Recipe Book</h1>
     </header>
-    <main>
-        <form id="searchForm">
-            <label for="searchInput">Search Recipes:</label>
-            <input type="text" id="searchInput" name="searchInput" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
-        <section id="recipes">
-            <article class="recipe">
-                <img src="steak.jpg" alt="Recipe Image">
-                <h2>Recipe Title</h2>
-                <p class="description">A short description of the recipe. This text will be hidden on mobile view.</p>
-                <div class="rating" role="img" aria-label="Rating: 4 out of 5 stars">
-                    <span aria-hidden="true" class="icon-star">⭐</span>
-                    <span aria-hidden="true" class="icon-star">⭐</span>
-                    <span aria-hidden="true" class="icon-star">⭐</span>
-                    <span aria-hidden="true" class="icon-star">⭐</span>
-                    <span aria-hidden="true" class="icon-star-empty">☆</span>
-                </div>
-            </article>
-            <!-- Add more recipes here -->
-        </section>
+
+    <form class="search-form">
+        <label for="search" class="visually-hidden">Search Recipes</label>
+        <input type="search" id="search" placeholder="Search Recipes...">
+        <button type="submit">Search</button>
+    </form>
+
+    <main class="recipes">
+        <article class="recipe">
+            <img src="pancakes.jpg" alt="Pancakes" class="recipe-image">
+            <h2 class="recipe-title">Pancakes</h2>
+            <p class="recipe-meta">Date: Oct 26, 2023</p>
+            <p class="recipe-description">Fluffy pancakes recipe.</p>
+            <div class="rating" role="img" aria-label="Rating: 4 out of 5 stars">
+                <span aria-hidden="true" class="icon-star">⭐</span>
+                <span aria-hidden="true" class="icon-star">⭐</span>
+                <span aria-hidden="true" class="icon-star">⭐</span>
+                <span aria-hidden="true" class="icon-star">⭐</span>
+                <span aria-hidden="true" class="icon-star-empty">☆</span>
+            </div>
+        </article>
     </main>
+
     <footer>
+        <p>© 2025 Recipe Book. All rights reserved.</p>
+        <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons" class="attribution">Recipe icons created by Freepik - Flaticon</a>
         <div class="social">
-            <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates -->
-            <a href="#"><img src="instagram.jpg" alt="Instagram"></a>
-            <a href="#"><img src="youtube.jpg" alt="YouTube"></a>
-            <a href="#"><img src="pinterest.jpg" alt="Pinterest"></a>
+             <a href="#" aria-label="Instagram"><img src="instagram.jpg" alt="Instagram icon"></a>
+            <a href="#" aria-label="YouTube"><img src="youtube.jpg" alt="YouTube icon"></a>
+            <a href="#" aria-label="Pinterest"><img src="pinterest.png" alt="Pinterest icon"></a>
         </div>
-        <p>
-            <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
-        </p>
     </footer>
-    <script src="main.js"></script>
 </body>
-</html>
+</html>d
