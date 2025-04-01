@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Book</title>
     <link rel="stylesheet" href="recipes.css">
-    <script src="main.js" defer></script>
-    <script src="recipes.mjs" type="module"></script>
+    <script src="main.js" type="module" defer></script>
     <meta name="description" content="A collection of delicious recipes.">
     <meta name="author" content="Your Name">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
     <meta property="og:title" content="Recipe Book">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="recipe-book">
+    <meta property="og:image" content="images/recipe-book.png">
     <meta property="og:url" content="https://your-github-username.github.io/recipes/">
     <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -25,26 +24,13 @@
         <h1>Recipe Book</h1>
     </header>
 
-    <form class="search-form">
+    <form class="search-form" id="search-form">
         <label for="search" class="visually-hidden">Search Recipes</label>
         <input type="search" id="search" placeholder="Search Recipes...">
         <button type="submit">Search</button>
     </form>
 
-    <main class="recipes">
-        <article class="recipe">
-            <img src="pancakes.jpg" alt="Pancakes" class="recipe-image">
-            <h2 class="recipe-title">Pancakes</h2>
-            <p class="recipe-meta">Date: Oct 26, 2023</p>
-            <p class="recipe-description">Fluffy pancakes recipe.</p>
-            <div class="rating" role="img" aria-label="Rating: 4 out of 5 stars">
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star">⭐</span>
-                <span aria-hidden="true" class="icon-star-empty">☆</span>
-            </div>
-        </article>
+    <main class="recipes" id="recipe-list">
     </main>
 
     <footer>
@@ -56,5 +42,86 @@
             <a href="#" aria-label="Pinterest"><img src="pinterest.png" alt="Pinterest icon"></a>
         </div>
     </footer>
+
+    <script type="module">
+        import recipes from './recipes.mjs';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchForm = document.getElementById('search-form');
+            const recipeList = document.getElementById('recipe-list');
+
+            function getRandomListEntry(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            function tagsTemplate(tags) {
+                let html = '<ul class="recipe__tags">';
+                tags.forEach(tag => {
+                    html += `<li>${tag}</li>`;
+                });
+                html += '</ul>';
+                return html;
+            }
+
+            function ratingTemplate(rating) {
+                let html = `<div class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">`;
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        html += '<span aria-hidden="true" class="icon-star">⭐</span>';
+                    } else {
+                        html += '<span aria-hidden="true" class="icon-star-empty">☆</span>';
+                    }
+                }
+                html += '</div>';
+                return html;
+            }
+
+            function recipeTemplate(recipe) {
+                return `
+                    <article class="recipe">
+                        <img src="${recipe.image}" alt="${recipe.title}" class="recipe-image">
+                        <h2 class="recipe-title">${recipe.title}</h2>
+                        <p class="recipe-meta">Date: ${recipe.date}</p>
+                        ${tagsTemplate(recipe.tags)}
+                        ${ratingTemplate(recipe.rating)}
+                        <p class="recipe-description">${recipe.description}</p>
+                    </article>
+                `;
+            }
+
+            function renderRecipes(recipeListToRender) {
+                recipeList.innerHTML = '';
+                recipeListToRender.forEach(recipe => {
+                    recipeList.innerHTML += recipeTemplate(recipe);
+                });
+            }
+
+            function filterRecipes(query) {
+                const filtered = recipes.filter(recipe => {
+                    const queryLower = query.toLowerCase();
+                    return (
+                        recipe.title.toLowerCase().includes(queryLower) ||
+                        recipe.description.toLowerCase().includes(queryLower) ||
+                        recipe.tags.some(tag => tag.toLowerCase().includes(queryLower))
+                    );
+                });
+                return filtered.sort((a, b) => a.title.localeCompare(b.title));
+            }
+
+            function init() {
+                const recipe = getRandomListEntry(recipes);
+                renderRecipes([recipe]);
+            }
+
+            init();
+
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const searchTerm = document.getElementById('search').value;
+                const filteredRecipes = filterRecipes(searchTerm);
+                renderRecipes(filteredRecipes);
+            });
+        });
+    </script>
 </body>
-</html>d
+</html>
