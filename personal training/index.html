@@ -46,12 +46,27 @@
         <form action="submit_review.php" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-
+    
             <label for="review">Your Review:</label>
             <textarea id="review" name="review" required></textarea>
-
+    
             <button type="submit">Submit Review</button>
+            <p id="reviewStatus"></p> <!-- Shows success/error messages -->
         </form>
+        <form id="contactForm" action="contact.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        
+            <button type="submit">Send Message</button>
+            <p id="contactStatus"></p> <!-- Message status -->
+        </form>
+        
 
         <h3>Latest Reviews</h3>
         <div id="review-list"></div>

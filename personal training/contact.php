@@ -2,31 +2,48 @@
 require __DIR__ . '/vendor/autoload.php';
 use Twilio\Rest\Client;
 
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("HTTP/1.1 405 Method Not Allowed");
+    echo "Error 405: Method Not Allowed. Use POST requests only.";
+    exit;
+}
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST["name"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $message = htmlspecialchars($_POST["message"]);
+    $name = trim(htmlspecialchars($_POST["name"]));
+    $email = trim(htmlspecialchars($_POST["email"]));
+    $message = trim(htmlspecialchars($_POST["message"]));
+
+    // ✅ Basic Validation
+    if (empty($name) || empty($email) || empty($message)) {
+        echo json_encode(["status" => "error", "message" => "All fields are required!"]);
+        exit;
+    }
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "message" => "Invalid email format!"]);
+        exit;
+    }
 
     // 📧 Send Email
-    $to = "woodconnor100@gmail.com"; 
+    $to = "your-email@example.com"; 
     $subject = "New Inquiry from Your Website";
     $body = "Name: $name\nEmail: $email\nMessage:\n$message";
 
     $headers = "From: $email";
     mail($to, $subject, $body, $headers);
 
-    // 📱 Send SMS Notification
+    // 📱 Send SMS Notification (Twilio)
     $sid    = "your_account_sid";  
     $token  = "your_auth_token";   
     $twilio = new Client($sid, $token);
 
-    $sms_message = "New Inquiry! Name: $name, Email: $email, Message: $message";
-
     $twilio->messages->create(
-        "208-351-6086",
-        ["from" => "twilio-phone-number", "body" => $sms_message]
+        "your-phone-number",
+        ["from" => "twilio-phone-number", "body" => "New Inquiry from $name! Check email."]
     );
 
-    echo "Message sent successfully!";
+    echo json_encode(["status" => "success", "message" => "Message sent successfully!"]);
 }
 ?>
+
