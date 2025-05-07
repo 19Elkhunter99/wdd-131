@@ -41,6 +41,29 @@
         <a href="https://search.google.com/local/writereview?placeid=YOUR_GOOGLE_PLACE_ID" target="_blank">
             <button>Leave a Google Review</button>
         </a>
+        <section id="reviews">
+            <h2>Leave a Review</h2>
+            <p>Help others discover the benefits of my training by leaving a review!</p>
+            
+            <a id="googleReviewLink" href="#" target="_blank">
+                <button>Leave a Google Review</button>
+            </a>
+        </section>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const googlePlaceID = "YOUR_GOOGLE_PLACE_ID"; // Replace with your actual Place ID
+                const googleReviewLink = document.getElementById("googleReviewLink");
+        
+                if (googlePlaceID) {
+                    googleReviewLink.href = `https://search.google.com/local/writereview?placeid=${googlePlaceID}`;
+                } else {
+                    googleReviewLink.innerText = "Google Reviews Not Available";
+                    googleReviewLink.style.pointerEvents = "none"; // Disable the button if Place ID is missing
+                }
+            });
+        </script>
+        
 
         <h3>Submit a Review</h3>
         <form action="submit_review.php" method="POST">
