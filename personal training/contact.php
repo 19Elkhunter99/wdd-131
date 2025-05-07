@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars($_POST["message"]);
 
     // 📧 Send Email
-    $to = "your-email@example.com"; 
+    $to = "woodconnor100@gmail.com"; 
     $subject = "New Inquiry from Your Website";
     $body = "Name: $name\nEmail: $email\nMessage:\n$message";
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sms_message = "New Inquiry! Name: $name, Email: $email, Message: $message";
 
     $twilio->messages->create(
-        "your-phone-number",
+        "208-351-6086",
         ["from" => "twilio-phone-number", "body" => $sms_message]
     );
 
